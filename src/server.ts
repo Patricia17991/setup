@@ -5,8 +5,8 @@ import {PrismaClient} from '@prisma/client' //accessing the database
 const app = Fastify()
 const prisma = new PrismaClient()
 
-app.get('/', () => {
-    const habits = prisma.habit.findMany({
+app.get('/', async() => {
+    const habits = await prisma.habit.findMany({
         where: {
             title: {
                 startsWith: 'Beber'
@@ -17,6 +17,14 @@ app.get('/', () => {
     return habits
 })
 
+
+
+
+app.listen({
+    port: 3333,
+}).then(() => {
+    console.log('HTTP Server running!')
+})
 
 
 
