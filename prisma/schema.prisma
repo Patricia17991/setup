@@ -18,11 +18,21 @@ model Habit {
   @@map("habits") //name of table
 }
 
+model HabitWeekDays {
+  id String @id @default(uuid())
+  habit_id String
+  week_day Int
+
+  @@unique([habit_id, week_day])
+  @@map("habit_week_days")
+}
+
 model Day { //vamos ter registros do dia que pelo menos um hábito foi completado
   id String @id @default(uuid())
   date DateTime
 
   @@unique([date])
+  @@map("days")
 }
 
 
@@ -33,4 +43,5 @@ model DayHabit {
   habit_id String 
  
   @@unique([day_id, habit_id])
+  @@map("day_habits")
 }
