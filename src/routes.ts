@@ -1,5 +1,4 @@
-
-  import dayjs from "dayjs"
+import dayjs from "dayjs"
 import { FastifyInstance } from "fastify"
 import { z } from "zod"
 import { prisma } from "./lib/prisma"
@@ -66,7 +65,7 @@ export async function appRoutes(app: FastifyInstance) {
 
     const completedHabits = day?.dayHabits.map(dayHabit => {
       return dayHabit.habit_id
-    })
+    }) ?? []
 
     return {
       possibleHabits,
@@ -149,3 +148,4 @@ export async function appRoutes(app: FastifyInstance) {
     return summary
   })
 }
+
